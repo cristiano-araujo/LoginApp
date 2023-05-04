@@ -14,7 +14,7 @@ export class RegisterComponent implements OnInit{
   }
 
   registerform = new FormGroup({
-    firstname: new FormControl("",[validators.required]),
+    firstname: new FormControl(""),
     lastname: new FormControl(""),
     email: new FormControl(""),
     telefone: new FormControl(""),
@@ -23,7 +23,7 @@ export class RegisterComponent implements OnInit{
     rpwd: new FormControl(""),
   });
   registerSubmited(){
-    console.log(this.registerform.get("firstname"));
+    console.log(this.registerformok);
   }
 
 
