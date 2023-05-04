@@ -1,0 +1,65 @@
+<form [formGroup]="registerform" (ngSubmit)="registerSubmited()" class="border p-3 rounded-3">
+  <div class="row g-0">
+    <div class="col text-center p-2 md-3 bg-light">
+      <span class="fs-3">Cadastro</span>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col mb-3">
+      <label for="firstname" class="form-label">Primeiro Nome</label>
+      <input type="text" class="form-control" id="firstname" formControlName="firstname">
+    </div>
+    <div class="col mb-3">
+      <label for="lastname" class="form-label">Sobre Nome</label>
+      <input type="text" class="form-control" id="lastname" formControlName="lastname">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input type="email" class="form-control" id="email"
+      formControlName="email">
+      <div class="form-text"></div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col mb-3">
+      <label for="telefone" class="form-label">Telefone</label>
+      <input type="text" class="form-control" id="telefone"
+      formControlName="telefone">
+      <div class="form-text"></div>
+    </div>
+    <div class="col mb-3 ps-3">
+      <div class="m-1">Gênero</div>
+      <div class="form-check form-check-inline">
+        <input type="radio" value="m" id="male" class="form-check-input" formControlName="genero">
+        <label for="male" class="form-check-label">Masculino</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input type="radio" value="f" id="femele" class="form-check-input" formControlName="genero">
+        <label for="femele" class="form-check-label">Feminino</label>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col mb-3">
+      <label for="pwd" class="form-label">Senha</label>
+      <input type="password" class="form-control" id="pwd" formControlName="pwd">
+      <div class="form-text"></div>
+    </div>
+    <div class="col mb-3">
+      <label for="rpwd" class="form-label">Confirmar senha</label>
+      <input type="password" class="form-control" id="rpwd"
+      formControlName="rpwd">
+      <div class="form-text"></div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6 offset-3">
+      <div class="d-grid">
+        <button type="submit" class="btn btn-primary">Cadastrar</button>
+      </div>
+    </div>
+  </div>
+
+</form>
