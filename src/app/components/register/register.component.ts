@@ -1,6 +1,7 @@
 import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -8,8 +9,10 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit{
+  RPWD: any;
+  repeatPass: string = 'none';
 
-  constructor(){ }
+  constructor(private authService: AuthService){ }
 
   ngOnInit(): void {
   }
@@ -36,6 +39,7 @@ export class RegisterComponent implements OnInit{
       Validators.maxLength(11),
     ]),
     genero: new FormControl("", [Validators.required]),
+
     pwd: new FormControl("",  [
       Validators.required,
       Validators.minLength(6),
@@ -43,9 +47,22 @@ export class RegisterComponent implements OnInit{
     ]),
     rpwd: new FormControl(""),
   });
-  registerSubmited(){
-    console.log(this.registerform.get("firstname"));
+
+    registerSubmited(){
+      if(this.PWD.value == this.RPWD.value){
+        console.log("this.registerForm.valid");
+        this.repeatPass = 'none'
+
+        this.authService.registerUser().subscribe((res: any) => {
+          console.log(res)
+        })
+
+
+      }else{
+        this.repeatPass = 'inline'
+      }
   }
+
   get FirstName(): FormControl {
     return this.registerform.get("firstname") as FormControl;
   }

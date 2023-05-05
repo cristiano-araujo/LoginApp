@@ -88,25 +88,27 @@
       <input type="password" class="form-control" id="pwd" formControlName="pwd">
       <div class="form-text"></div>
       <div class="form-text text-danger" *ngIf="PWD.errors?.['required'] && (PWD.touched || PWD.dirty)">
-        Senha é Requerida.
+      Senha é Requerida.
       </div>
-    </div>
-    <div class="col mb-3">
-      <label for="rpwd" class="form-label">Confirme a senha</label>
-      <input type="password" class="form-control" id="rpwd" formControlName="rpwd">
-      <div class="form-text"></div>
-      <div class="form-text text-danger" *ngIf="PWD.errors?.['maxlength'] && (PWD.touched || PWD.dirty)">
+      <div class="form-text text-danger" *ngIf="PWD.errors?.['minlength'] || PWD.errors?.['maxlength'] && (PWD.dirty || PWD.touched)">
         Senha deve ter pelo menos 6 e no máximo 15 caracteres.
       </div>
     </div>
 
 
+    <div class="col mb-3">
+      <label for="rpwd" class="form-label">Confirme a senha</label>
+      <input type="password" class="form-control" id="rpwd" formControlName="rpwd">
+      <div class="form-text text-danger" [ngStyle]="{'display': repeatPass}">
+        Senha Confirmada é Invalida.
+      </div>
     </div>
+  </div>
 
   <div class="row">
     <div class="col-6 offset-3">
       <div class="d-grid">
-        <button type="submit" class="btn btn-primary">Cadastrar</button>
+        <button type="submit" [disabled]="registerform.invalid" class="btn btn-primary">Cadastrar</button>
       </div>
     </div>
   </div>
