@@ -11,6 +11,8 @@ export class RegisterComponent implements OnInit{
   repeatPass: string = 'none';
   RPWD: any;
 
+  displayMsg: string = '';
+  isAccountCreated: boolean = false;
 
   constructor(private authService: AuthService){ }
 
@@ -50,11 +52,29 @@ export class RegisterComponent implements OnInit{
     registerSubmited(){
       if(this.PWD.value == this.RPWD.value){
         console.log(this.registerForm.valid);
-        this.repeatPass = 'none'
+        this.repeatPass = 'none';
 
-        this.authService.registerUser().subscribe(res =>{
-          console.log(res);
-        })
+        this.authService
+        .registerUser([
+          this.registerForm.value.firstname,
+          this.registerForm.value.lastname,
+          this.registerForm.value.email,
+          this.registerForm.value.telefone,
+          this.registerForm.value.genero,
+          this.registerForm.value.pwd,
+        ])
+        .subscribe(res => {
+          if (res == 'Sucess'){
+            this.displayMsg = 'Account Created Successfully!';
+            this,this.isAccountCreated = true;
+          } else if (res == 'Already Exist') {
+            this.displayMsg = 'Account Already Exist. try another Email.';
+            this.isAccountCreated = false;
+          }else {
+            this.displayMsg = 'Something went wrong. Try Again.';
+            this.isAccountCreated = false;
+          }
+          });
 
       }else{
         this.repeatPass = 'inline'
