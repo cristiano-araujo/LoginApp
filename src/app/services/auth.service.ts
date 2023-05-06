@@ -5,14 +5,13 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class AuthService {
-  http: any;
-  constructor(http: HttpClient) { }
 
-  baseServerUrl = "https://localhost:7268/api/";
+  constructor(private http: HttpClient) { }
+
+  baseServerUrl = "https://localhost:44342/api/";
 
   registerUser(){
-   return this.http.post(this.baseServerUrl + "User/CreateUser", null,
-   {responseType: 'text'});
+   return this.http.post(this.baseServerUrl + "User/CreateUser", null, {responseType: 'text'});
   }
 
 }
